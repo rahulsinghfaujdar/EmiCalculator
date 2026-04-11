@@ -1,0 +1,20 @@
+node_modules
+package-lock.json
+yarn.lock
+.idea
+.vscode
+
+# Android
+android/.gradle
+android/app/build
+android/build
+android/.idea
+android/local.properties
+android/.DS_Store
+android/.externalNativeBuild
+android/.cxx
+android/app/.cxx
+android/app/.cxx/**
+android/.settings
+android/.metadata
+android/.kotlin
