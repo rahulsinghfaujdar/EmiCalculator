@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "safeareacontext_autolinked_build",
+		"source" : "/home/rahul/Desktop/assesment/EmiCalculator/node_modules/react-native-safe-area-context/android/src/main/jni"
+	}
+}
