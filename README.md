@@ -2,7 +2,6 @@
 
 EMI Calculator Module
 
----
 ## 📌 Project Introduction
 This project is built using a multi-module architecture, where each module is designed to be independent, scalable, and reusable. The overall structure follows an MVC-based approach implemented in React Native with TypeScript, ensuring clear separation of concerns and maintainability.
 Due to time constraints, the current implementation focuses on delivering core functionality with a modular foundation. The following key modules and features are included:
@@ -17,6 +16,7 @@ Due to time constraints, the current implementation focuses on delivering core f
 - `Utility Module` – Common helper functions and shared logic (both custom and third-party integrations).
 
 This modular approach makes the application extensible and production-ready, allowing teams (developers, designers, testers) to work independently on different parts of the system.
+
 ---
 
 ---
