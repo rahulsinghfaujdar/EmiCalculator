@@ -9,25 +9,6 @@
       "client_info": {
         "mobilesdk_app_id": "1:178500935265:android:1c76492f1623d43867d420",
         "android_client_info": {
-          "package_name": "com.emicalculator"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAddsE094eXoyMpRtvSviVLWnMH7uo3muE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:178500935265:android:b94a5a23c004487e67d420",
-        "android_client_info": {
           "package_name": "com.emicalculator.dev"
         }
       },

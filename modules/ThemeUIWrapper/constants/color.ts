@@ -1,0 +1,16 @@
+export const COLORS = {
+  white: '#FFFFFF',
+  primary: '#e4539e',
+  primaryLight: '#F472B6',
+  primaryDisabled: '#e4539e80',
+  textPrimary: '#111827',
+  textSecondary: '#6B7280',
+  textPlaceholder: '#9CA3AF',
+  border: '#E5E7EB',
+  error: '#DC2626',
+  shadow: '#000000',
+  surfaceLight: '#f3f4f6',
+  buttonDisabled: '#9bcbff',
+  success: '#10b981',
+  warning: '#f97316',
+};
