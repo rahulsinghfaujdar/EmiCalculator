@@ -19,7 +19,6 @@ This modular approach makes the application extensible and production-ready, all
 
 ---
 
----
 ## 🔮 Future Improvements / TODO
 Given more time, the following enhancements are planned:
 
@@ -34,15 +33,12 @@ Replace dummy login with secure authentication (Firebase/Auth API).
 
 🌐 Production-Ready Networking Layer
 Implement real API integrations with error handling, retries, and caching.
----
 
 ---
+
 ### Screenshots
- --- | --- | --- | --- |
-<img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_1.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_2.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_1.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_2.jpg" width="50%"></img>
-
- --- | --- | --- | --- |
-<img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_1.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_2.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_1.jpg" width="50%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_2.jpg" width="50%"></img>
+<img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_2.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_2.jpg" width="20%"></img>
+<img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_2.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_2.jpg" width="20%"></img>
 
 ---
 
@@ -58,10 +54,11 @@ This project has been set up and tested with the following local versions in VS 
 - TypeScript version: `^6.0.2`
 - JDK version: `17.0.18`
 - VS Code version: `1.114.0`
----
 
 ---
-##🧠 Architecture (High-Level)
+
+## 🧠 Architecture (High-Level)
+```bash
                 ┌──────────────────────┐
                 │     App Entry        │
                 └─────────┬────────────┘
@@ -88,10 +85,13 @@ This project has been set up and tested with the following local versions in VS 
            │ Utilities     │   │ Networking     │
            │ (Helpers)     │   │ Layer          │
            └───────────────┘   └────────────────┘
----
+```
 
 ---
+
 ## 📁 Project Structure
+
+```bash
 src/
  ├── modules/
  │   ├── LoginStack/
@@ -105,20 +105,26 @@ src/
  
 android/  → Native Android setup
 ios/      → Native iOS setup
----
+```
+
 
 ---
+
 ## 📲 APK Download
+
 👉 https://github.com/rahulsinghfaujdar/EmiCalculator/actions/runs/24302714047
----
 
 ---
+
+
 ## 🔑 Test Credentials
+
 Mobile: 1234567890
+
 Password: 12345678
----
 
 ---
+
 ## ☁️ Firebase Integration
 Remote Config for feature flags
 Crashlytics (ready for integration)
@@ -135,9 +141,9 @@ npm install --save @react-native-firebase/remote-config
 ```
 3. Add native Firebase Remote Config setup for Android and iOS following React Native Firebase docs.
 4. Use the Remote Config API to fetch values and control feature flags or app behavior remotely.
----
 
 ---
+
 ## 🔄 Data Flow
 Redux Toolkit for state management
 Redux Persist for local storage
@@ -145,23 +151,23 @@ AsyncStorage for persistence
 
 Flow:
 User Action → Redux Action → Reducer → Store Update → UI Re-render
----
 
 ---
+
 ## 🧪 Testing
 npm test -- --runInBand
----
 
 ---
+
 ## 🚀 CI/CD Pipeline
 GitHub Actions
 Automated APK generation
 Supports:
 dev / prod builds
 debug / release variants
----
 
 ---
+
 ## 🧰 Setup Project in VS Code
 1. Open the repository folder in VS Code by using git clone <repositary>.
 ```bash
@@ -170,9 +176,9 @@ cd EmiCalculator
 ```
 3. Run `npm install` from the built-in terminal.
 4. Use VS Code tasks or integrated terminal to launch Metro and run the app.
----
 
 ---
+
 ## ▶️ Run Project
 1. Install dependencies:
 ```bash
@@ -194,9 +200,9 @@ npx react-native run-android
 npx react-native run-android --variant=devDebug
 npx react-native run-android --variant=prodDebug
 ```
----
 
 ---
+
 ## 🏗️ Project Architecture
 The project is organized into:
 - `src/` - App entrypoint and app initialization.
@@ -209,9 +215,9 @@ The project is organized into:
   - `Networking/` - API and network-related helpers used by the app.
   - `Utility/` - Utility functions and helpers used by multiple modules.
 - `android/` and `ios/` - Native platform projects and build configuration.
----
 
 ---
+
 ## 🔄 Project Data Flow and Persistence
 - Redux Toolkit manages global app state.
 - `modules/EMICalculatorStack/src/store/index.ts` combines and persists reducers.
@@ -221,9 +227,9 @@ The project is organized into:
   - `EMICalculatorScreen` when login is complete and the calculator feature is enabled.
   - `HomeScreen` otherwise.
 - Login state and EMI state are saved locally so users remain logged in after app restart.
----
 
 ---
+
 ## 🧪 Project Test Cases Documentation
 - Tests are written using Jest.
 - Example tests are located under `modules/Test/`, such as `useLogin.test.ts` & `useEMICalculator.test.ts`.
@@ -231,9 +237,9 @@ The project is organized into:
 ```bash
 npm test -- --runInBand
 ```
----
 
 ---
+
 ## 🚀 Project CI/CD Operations
 - CI workflow is defined in `.github/workflows/android-debug-apk.yml`.
 - The workflow runs test cases first, then builds the Android APK.
@@ -241,9 +247,9 @@ npm test -- --runInBand
   - `build_env`: `dev` or `prod`
   - `build_type`: `debug` or `release`
 - The build job assembles the corresponding Gradle variant and uploads the APK artifact.
----
 
 ---
+
 ## 🚀 Project Initialization Guide
 Follow the steps below to set up and run the project:
 
@@ -251,35 +257,35 @@ Follow the steps below to set up and run the project:
 ```bash
 npx @react-native-community/cli init EmiCalculator
 ```
----
+
 ### 2. Clone Repository
 ```bash
 git clone https://github.com/rahulsinghfaujdar/EmiCalculator.git
 cd EmiCalculator
 ```
----
+
 ### 3. Sync Latest Code
 ```bash
 git fetch --all
 git pull origin main
 ```
----
+
 ### 4. Create Working Branch
 ```bash
 git checkout -b EmiCalculator_ver_0.0.1
 git branch
 ```
----
+
 ### 5. Reinitialize Project (if required)
 ```bash
 npx @react-native-community/cli init EmiCalculator
 ```
----
+
 ### 6. Install ESLint Compatible Version
 ```bash
 npm install eslint@^9 --save-dev
 ```
----
+
 ### 7. Update package.json
 Add the following:
 ```json
@@ -287,23 +293,23 @@ Add the following:
   "glob": "^13.0.6"
 }
 ```
----
+
 ### 8. Update Gradle Configuration
 Add this in `android/gradle.properties`:
 ```properties
 org.gradle.warning.mode=none
 ```
----
+
 ### 9. Install Dependencies
 ```bash
 npm install
 ```
----
+
 ### 10. Install Firebase Package
 ```bash
 npm install --save @react-native-firebase/app
 ```
----
+
 ### 11. Firebase Setup (Android)
 * Create project in Firebase
 * Use package name: `com.emicalculator` & `com.emicalculator.dev`
@@ -312,12 +318,12 @@ npm install --save @react-native-firebase/app
 ```
 android/app/
 ```
----
+
 ### 12. Push Code to Branch
 ```bash
 git push origin EmiCalculator_ver_0.0.1
 ```
----
+
 ## ✅ You're ready to go!
 Run the Development Server
 ```bash
@@ -333,9 +339,12 @@ npx react-native run-android --mode devDebug
 ```
 
 ---
+
+
 ⭐ If you like this project
 
+
 Give it a ⭐ on GitHub and feel free to contribute!
----
+
 
 ---
