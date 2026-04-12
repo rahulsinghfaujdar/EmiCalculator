@@ -1,4 +1,4 @@
-name: Android Debug APK CI
+name: Android APK CI
 
 on:
   push:
@@ -7,11 +7,69 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      build_env:
+        description: 'Build environment flavor'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+      build_type:
+        description: 'Build type'
+        required: true
+        default: 'debug'
+        type: choice
+        options:
+          - debug
+          - release
 
 jobs:
-  build-debug-apk:
-    name: Build Android Debug APK
+  test:
+    name: Run test cases
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.20.2'
+
+      - name: Ensure npm version
+        run: npm install -g npm@10.8.2
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run test cases
+        run: npm test -- --runInBand
+
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+    needs: test
+
+    env:
+      BUILD_ENV: ${{ github.event.inputs.build_env || 'dev' }}
+      BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
 
     steps:
       - name: Checkout repository
@@ -50,12 +108,30 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
 
-      - name: Build debug APK
+      - name: Build APK for selected flavor
         working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          case "${BUILD_ENV}-${BUILD_TYPE}" in
+            dev-debug)
+              ./gradlew assembleDevDebug --no-daemon
+              ;;
+            dev-release)
+              ./gradlew assembleDevRelease --no-daemon
+              ;;
+            prod-debug)
+              ./gradlew assembleProdDebug --no-daemon
+              ;;
+            prod-release)
+              ./gradlew assembleProdRelease --no-daemon
+              ;;
+            *)
+              echo "Unsupported build flavor/type: ${BUILD_ENV}-${BUILD_TYPE}"
+              exit 1
+              ;;
+          esac
 
-      - name: Upload debug APK artifact
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: EmiCalculator-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: EmiCalculator-${{ env.BUILD_ENV }}-${{ env.BUILD_TYPE }}-apk
+          path: android/app/build/outputs/apk/${{ env.BUILD_ENV }}/${{ env.BUILD_TYPE }}/app-${{ env.BUILD_ENV }}-${{ env.BUILD_TYPE }}.apk
