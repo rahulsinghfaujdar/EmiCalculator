@@ -39,9 +39,11 @@ Implement real API integrations with error handling, retries, and caching.
 ### 📸 Screenshots
 
 🌞 Light Theme
+
 <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/light_2.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_light_2.jpg" width="20%"></img>
 
 🌙 Dark Theme
+
 <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/dark_2.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_1.jpg" width="20%"></img> | <img src="https://github.com/rahulsinghfaujdar/EmiCalculator/blob/main/screenshots/error_dark_2.jpg" width="20%"></img>
 
 ---
