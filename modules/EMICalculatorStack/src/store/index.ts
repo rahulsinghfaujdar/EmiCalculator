@@ -4,31 +4,53 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import emiCalculatorReducer from './emiSlice';
 import { loginReducer } from '../../../LoginStack/src/LoginScreen/store';
+import navigationReducer from './navigationSlice';
+import { navigationRef } from '../../../../src/navigationRef';
 
+// Navigation Middleware
+const navigationMiddleware = (store: any) => (next: any) => (action: any) => {
+  if (action.type === 'navigation/navigate') {
+    if (navigationRef.isReady()) {
+      (navigationRef as any).navigate(action.payload);
+    }
+  }
+  return next(action);
+};
+import { version } from 'react';
+
+//Combine Reducers (App State Structure)
 const rootReducer = combineReducers({
   emiCalculator: emiCalculatorReducer,
   login: loginReducer,
+  navigation: navigationReducer,
 });
 
+//Persist Configuration (Saving State Locally)
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  whitelist: ['login', 'emiCalculator'],
+  key: 'root',    //Root storage key
+  version: 1,    //Version for migrations
+  storage: AsyncStorage,    //Use React Native local storage
+  whitelist: ['login', 'emiCalculator', 'navigation'],    //Only persist these slices of state
+  blacklist: [],    //Don't persist these slices of state
 };
 
+//Create Persisted Reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+//Configure Store (Redux Toolkit)
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
+  reducer: persistedReducer,    //Persisted reducer (instead of normal reducer)
+  middleware: (getDefaultMiddleware) =>   //Redux Toolkit enforces serializable state/actions But Redux Persist uses some non-serializable internal actions
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(navigationMiddleware),
 });
 
 export const persistor = persistStore(store);
 
+
+//Type-safe useSelector and useDispatch hooks for TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

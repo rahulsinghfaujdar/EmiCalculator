@@ -18,7 +18,7 @@ const EMICalculatorScreen = () => {
   const theme = useAppTheme();
   const styles = createStyles(theme);
 
-  const { inputs, errors, result, isValid, handleInputChange, calculate, reset } = useEMICalculator();
+  const { inputs, inputValues, errors, result, isValid, handleInputChange, calculate, reset } = useEMICalculator();
 
   return (
     <KeyboardAvoidingView
@@ -32,7 +32,7 @@ const EMICalculatorScreen = () => {
         <View style={styles.formGroup}>
           <Text style={styles.label}>{theme.strings.emiLoanAmountLabel}</Text>
           <TextInput
-            value={inputs.principal === 0 ? '' : String(inputs.principal)}
+            value={inputValues.principal}
             onChangeText={value => handleInputChange('principal', value)}
             keyboardType="numeric"
             placeholder={theme.strings.emiLoanAmountPlaceholder}
@@ -45,9 +45,9 @@ const EMICalculatorScreen = () => {
         <View style={styles.formGroup}>
           <Text style={styles.label}>{theme.strings.emiInterestRateLabel}</Text>
           <TextInput
-            value={inputs.annualInterestRate === 0 ? '' : String(inputs.annualInterestRate)}
+            value={inputValues.annualInterestRate}
             onChangeText={value => handleInputChange('annualInterestRate', value)}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             placeholder={theme.strings.emiInterestRatePlaceholder}
             placeholderTextColor={theme.palette.secondaryText}
             style={styles.input}
@@ -58,7 +58,7 @@ const EMICalculatorScreen = () => {
         <View style={styles.formGroup}>
           <Text style={styles.label}>{theme.strings.emiTenureLabel}</Text>
           <TextInput
-            value={inputs.tenureMonths === 0 ? '' : String(inputs.tenureMonths)}
+            value={inputValues.tenureMonths}
             onChangeText={value => handleInputChange('tenureMonths', value)}
             keyboardType="numeric"
             placeholder={theme.strings.emiTenurePlaceholder}

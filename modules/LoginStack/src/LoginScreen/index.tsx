@@ -14,6 +14,7 @@ import { setLoggedIn } from './store/loginSlice';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginScreen: React.FC<{ onLoginSuccess?: () => void }> = ({ onLoginSuccess }) => {
+  
   const dispatch = useAppDispatch();
   const theme = useAppTheme();
   const styles = createStyles(theme.palette);
