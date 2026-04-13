@@ -79,6 +79,11 @@ export const useEMICalculator = () => {
   const calculatorState = useAppSelector(selectEMICalculator);
 
   const [errors, setErrors] = useState<EMICalculatorInputErrors>({});
+  const [inputValues, setInputValues] = useState<Record<keyof EMICalculatorInputs, string>>({
+    principal: calculatorState.principal ? String(calculatorState.principal) : '',
+    annualInterestRate: calculatorState.annualInterestRate ? String(calculatorState.annualInterestRate) : '',
+    tenureMonths: calculatorState.tenureMonths ? String(calculatorState.tenureMonths) : '',
+  });
 
   const theme = useAppTheme();
 
@@ -96,11 +101,24 @@ export const useEMICalculator = () => {
 
   const isValid = useMemo(() => Object.keys(validateInputs(inputs, theme.strings)).length === 0, [inputs, theme.strings]);
 
+  const normalizeInputValue = (field: keyof EMICalculatorInputs, value: string) => {
+    if (field === 'annualInterestRate') {
+      const sanitized = value.replace(/[^0-9.]/g, '');
+      const parts = sanitized.split('.');
+      return parts[0] + (parts.length > 1 ? '.' + parts.slice(1).join('') : '');
+    }
+
+    return value.replace(/[^0-9]/g, '');
+  };
+
   const handleInputChange = (field: keyof EMICalculatorInputs, value: string) => {
-    const numericValue = value.replace(/[^0-9.]/g, '');
-    const parsed = numericValue === '' ? 0 : Number(numericValue);
+    const sanitizedValue = normalizeInputValue(field, value);
+    const parsed = sanitizedValue === '' || (field === 'annualInterestRate' && sanitizedValue === '.')
+      ? 0
+      : Number(sanitizedValue);
     const nextInputs = { ...inputs, [field]: parsed };
 
+    setInputValues(prev => ({ ...prev, [field]: sanitizedValue }));
     logger.log('Input Change:', field, value, 'Parsed:', parsed);
     
     switch (field) {
@@ -136,6 +154,7 @@ export const useEMICalculator = () => {
 
   return {
     inputs,
+    inputValues,
     errors,
     result,
     isValid,
