@@ -4,25 +4,11 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import emiCalculatorReducer from './emiSlice';
 import { loginReducer } from '../../../LoginStack/src/LoginScreen/store';
-import navigationReducer from './navigationSlice';
-import { navigationRef } from '../../../../src/navigationRef';
-
-// Navigation Middleware
-const navigationMiddleware = (store: any) => (next: any) => (action: any) => {
-  if (action.type === 'navigation/navigate') {
-    if (navigationRef.isReady()) {
-      (navigationRef as any).navigate(action.payload);
-    }
-  }
-  return next(action);
-};
-import { version } from 'react';
 
 //Combine Reducers (App State Structure)
 const rootReducer = combineReducers({
   emiCalculator: emiCalculatorReducer,
   login: loginReducer,
-  navigation: navigationReducer,
 });
 
 //Persist Configuration (Saving State Locally)
@@ -45,7 +31,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(navigationMiddleware),
+    }),
 });
 
 export const persistor = persistStore(store);

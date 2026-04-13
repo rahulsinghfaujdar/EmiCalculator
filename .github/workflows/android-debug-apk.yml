@@ -20,7 +20,7 @@ on:
       build_type:
         description: 'Build type'
         required: true
-        default: 'debug'
+        default: 'release'
         type: choice
         options:
           - debug
@@ -72,7 +72,7 @@ jobs:
 
     env:
       BUILD_ENV: ${{ github.event.inputs.build_env || 'dev' }}
-      BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
+      BUILD_TYPE: ${{ github.event.inputs.build_type || 'release' }}
 
     steps:
       - name: Checkout repository
