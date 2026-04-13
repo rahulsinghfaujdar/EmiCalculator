@@ -11,8 +11,8 @@ Due to time constraints, the current implementation focuses on delivering core f
 - `EMI Calculator Module` – Core feature to calculate EMI based on user input.
 - `Networking Module` – A placeholder/dummy layer for handling API interactions.
 - `Test Module` – Contains sample test cases to support QA/testing teams.
-- `ThemeUI Wrapper` – Centralized design system for managing themes, colors, typography, and spacing (useful for UI/UX designers).
-- `Global Components` – Reusable UI components for consistency across the app.
+- `ThemeUIWrapper Module` – Centralized design system for managing themes, colors, typography, and spacing (useful for UI/UX designers).
+- `Global Components Module` – Reusable UI components for consistency across the app.
 - `Utility Module` – Common helper functions and shared logic (both custom and third-party integrations).
 
 This modular approach makes the application extensible and production-ready, allowing teams (developers, designers, testers) to work independently on different parts of the system.
@@ -118,7 +118,7 @@ ios/      → Native iOS setup
 
 ## 📲 APK Download
 
-👉 https://github.com/rahulsinghfaujdar/EmiCalculator/actions/runs/24302714047
+👉 https://github.com/rahulsinghfaujdar/EmiCalculator/actions/runs/24329160521
 
 ---
 
